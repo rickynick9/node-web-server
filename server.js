@@ -2,12 +2,17 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+//For Heroku env varibale PORT is set on Heroku servers
+const port = process.env.PORT || 3000;
+
 var app = express();
 //use takes middleware. here we are using express middleware
 //with the below setting we don't need route for static contents.
 // app.use - to register middleware. app.use takes one function. This function will be called with
 // request object, response object and a third argument called next.
 // next exists so you can tell express when the middleware function is done.
+
+
 
 app.use((req, res, next) => {
   var now = new Date().toString();
@@ -86,6 +91,6 @@ app.get('/bad', (req, res) => {
 
 
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
